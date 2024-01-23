@@ -1,0 +1,2 @@
+"0","# Task 5: Count records in Switzerland in 2010 with a rating of 3.5"
+"0","dfSwitzerland2010 <- subset(dfCacao, CompanyLocation == ""Switzerland"" & ReviewDate == 2010 & Rating == 3.5)"

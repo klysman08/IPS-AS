@@ -1,0 +1,5 @@
+"0","# Task 4: Count records in Portugal, Spain, Germany, and USA"
+"0","dfPortugal <- subset(dfCacao, CompanyLocation == ""Portugal"")"
+"0","dfSpain <- subset(dfCacao, CompanyLocation == ""Spain"")"
+"0","dfGermany <- subset(dfCacao, CompanyLocation == ""Germany"")"
+"0","dfUSA <- subset(dfCacao, CompanyLocation == ""U.S.A."")"

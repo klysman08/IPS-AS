@@ -1,0 +1,6 @@
+"0",""
+"0","for (col in names(data)) {"
+"0","  if (is.numeric(data[[col]])) {"
+"0","    boxplot(data[[col]], main = paste(""Boxplot of"", col), ylab = col)"
+"0","  }"
+"0","}"
