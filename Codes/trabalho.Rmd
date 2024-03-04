@@ -1,0 +1,18 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+## Limpeza de dados
+esse codigo faz iso..
+
+```{r}
+plot(cars)
+```
+
+```{r}
+```
+
+```{r}
+```
+

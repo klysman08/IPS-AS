@@ -1,0 +1,607 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={R Notebook},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{R Notebook}
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+\maketitle
+
+\hypertarget{eda-singapore-accommodations}{%
+\section{EDA Singapore
+Accommodations}\label{eda-singapore-accommodations}}
+
+\hypertarget{introduction}{%
+\section{Introduction:}\label{introduction}}
+
+During exploratory data analysis (EDA), the dataframe that has
+information about accommodation in Singapore was worked on. Some
+dataframe columns contain the following information:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{neighborhood\_group}: Indicates the region of the neighborhood
+  where the accommodation is located.
+\item
+  \texttt{name}: Name of the accommodation.
+\item
+  \texttt{host\_id}: ID of the host responsible for the accommodation.
+\item
+  \texttt{host\_name}: Host name.
+\item
+  \texttt{neighborhood}: Name of the neighborhood where the
+  accommodation is located.
+\item
+  \texttt{latitude} and \texttt{longitude}: Geographic coordinates of
+  the accommodation.
+\item
+  \texttt{number\_of\_reviews}: Number of reviews received by the
+  accommodation.
+\item
+  \texttt{room\_type}: Type of room available in the accommodation.
+\item
+  \texttt{price}: Price of the accommodation.
+\item
+  \texttt{availability\_365}: Number of days the accommodation is
+  available to book over the course of a year.
+\end{itemize}
+
+During exploratory data analysis, we explore and summarize the main
+characteristics and patterns present in these data.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Descriptive analysis: We perform a statistical description of the
+  variables, such as mean, median, standard deviation, minimum and
+  maximum. This helps us understand the distribution of data and
+  identify potential discrepancies or outliers.
+\item
+  Handling missing or inconsistent data: We identify and handle missing
+  or inconsistent data, such as nulls or outliers. This may involve
+  deleting records with missing data or filling in these values with
+  appropriate techniques.
+\item
+  Data visualization: We use graphs and visualizations to represent data
+  in a more understandable way. For example, we can create bar charts to
+  show the distribution of room types or a map to visualize the location
+  of accommodations.
+\end{enumerate}
+
+\hypertarget{insights}{%
+\section{Insights}\label{insights}}
+
+\begin{itemize}
+\item
+  We look for interesting patterns and insights in the data that can be
+  useful for decision-making or answering specific questions. For
+  example, we may discover that certain neighborhoods have a greater
+  availability of accommodation throughout the year or that certain room
+  types have a direct relationship with price.
+\item
+  There are relationships between the variables present in the
+  dataframe. For example, we can analyze whether the price of
+  accommodation varies according to the region of the neighborhood or
+  whether there is any correlation between the number of reviews and
+  availability throughout the year.
+\end{itemize}
+
+\hypertarget{loading-the-raw-dataframe}{%
+\subsection{Loading the raw dataframe}\label{loading-the-raw-dataframe}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(readxl)}
+
+\NormalTok{file\_path }\OtherTok{\textless{}{-}} \StringTok{"G:/My Drive/IPS/Mestrado/UCs/Aprendizage supervisionada/IPS{-}ESCE SP ML/Session 3/Data/Singapore Airbnb {-} Raw.xlsx"}
+
+\NormalTok{data }\OtherTok{\textless{}{-}} \FunctionTok{read\_excel}\NormalTok{(file\_path)}
+
+\NormalTok{num\_rows }\OtherTok{\textless{}{-}} \FunctionTok{dim}\NormalTok{(data)[}\DecValTok{1}\NormalTok{]}
+\NormalTok{num\_cols }\OtherTok{\textless{}{-}} \FunctionTok{dim}\NormalTok{(data)[}\DecValTok{2}\NormalTok{]}
+
+\NormalTok{column\_names }\OtherTok{\textless{}{-}} \FunctionTok{colnames}\NormalTok{(data)}
+
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Number of rows:"}\NormalTok{, num\_rows, }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Number of rows: 7923
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Number of columns:"}\NormalTok{, num\_cols, }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Number of columns: 16
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Column names:"}\NormalTok{, }\FunctionTok{paste}\NormalTok{(column\_names, }\AttributeTok{collapse =} \StringTok{", "}\NormalTok{), }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Column names: id, name, host_id, host_name, neighbourhood_group, neighbourhood, latitude, longitude, room_type, price, minimum_nights, number_of_reviews, last_review, reviews_per_month, calculated_host_listings_count, availability_365
+\end{verbatim}
+
+\hypertarget{checking-for-missing-data}{%
+\subsection{Checking for missing data}\label{checking-for-missing-data}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{missing\_values }\OtherTok{\textless{}{-}} \FunctionTok{colSums}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(data))}
+
+\FunctionTok{print}\NormalTok{(}\StringTok{"Number of missing values in each column:"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Number of missing values in each column:"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(missing\_values)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                             id                           name 
+##                              0                              5 
+##                        host_id                      host_name 
+##                             13                              0 
+##            neighbourhood_group                  neighbourhood 
+##                              0                              0 
+##                       latitude                      longitude 
+##                             20                              9 
+##                      room_type                          price 
+##                              0                              0 
+##                 minimum_nights              number_of_reviews 
+##                              0                              4 
+##                    last_review              reviews_per_month 
+##                           2773                           2773 
+## calculated_host_listings_count               availability_365 
+##                              0                              0
+\end{verbatim}
+
+\hypertarget{display-the-first-rows-of-data}{%
+\subsection{Display the first rows of
+data}\label{display-the-first-rows-of-data}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{head}\NormalTok{(data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 16
+##      id name        host_id host_name neighbourhood_group neighbourhood latitude
+##   <dbl> <chr>         <dbl> <chr>     <chr>               <chr>            <dbl>
+## 1 49091 COZICOMFOR~  266763 Francesca North Region        Woodlands         1.44
+## 2 50646 Pleasant R~  227796 Sujatha   Central Region      Bukit Timah       1.33
+## 3 56334 COZICOMFORT  266763 Francesca North Region        Woodlands         1.44
+## 4 71609 Ensuite Ro~  367042 Belinda   East Region         Tampines          1.35
+## 5 71896 B&B  Room ~  367042 Belinda   East Region         Tampines          1.35
+## 6 71903 Room 2-nea~  367042 Belinda   East Region         Tampines          1.35
+## # i 9 more variables: longitude <dbl>, room_type <chr>, price <dbl>,
+## #   minimum_nights <dbl>, number_of_reviews <dbl>, last_review <dttm>,
+## #   reviews_per_month <dbl>, calculated_host_listings_count <dbl>,
+## #   availability_365 <dbl>
+\end{verbatim}
+
+\hypertarget{statistical-data-about-the-dataframe}{%
+\subsection{Statistical data about the
+dataframe}\label{statistical-data-about-the-dataframe}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        id               name              host_id           host_name        
+##  Min.   :   49091   Length:7923        Min.   :    23666   Length:7923       
+##  1st Qu.:15824582   Class :character   1st Qu.: 23129381   Class :character  
+##  Median :24707713   Mode  :character   Median : 63448912   Mode  :character  
+##  Mean   :23404133                      Mean   : 91313156                     
+##  3rd Qu.:32365800                      3rd Qu.:155656938                     
+##  Max.   :38112762                      Max.   :288567551                     
+##                                        NA's   :13                            
+##  neighbourhood_group neighbourhood         latitude       longitude    
+##  Length:7923         Length:7923        Min.   :1.244   Min.   :103.6  
+##  Class :character    Class :character   1st Qu.:1.296   1st Qu.:103.8  
+##  Mode  :character    Mode  :character   Median :1.311   Median :103.8  
+##                                         Mean   :1.314   Mean   :103.8  
+##                                         3rd Qu.:1.322   3rd Qu.:103.9  
+##                                         Max.   :1.455   Max.   :104.0  
+##                                         NA's   :20      NA's   :9      
+##   room_type             price         minimum_nights    number_of_reviews
+##  Length:7923        Min.   :    0.0   Min.   :   1.00   Min.   :  0.00   
+##  Class :character   1st Qu.:   65.0   1st Qu.:   1.00   1st Qu.:  0.00   
+##  Mode  :character   Median :  124.0   Median :   3.00   Median :  2.00   
+##                     Mean   :  192.3   Mean   :  17.53   Mean   : 12.73   
+##                     3rd Qu.:  199.0   3rd Qu.:  10.00   3rd Qu.: 10.00   
+##                     Max.   :65000.0   Max.   :1000.00   Max.   :323.00   
+##                                                         NA's   :4        
+##   last_review                     reviews_per_month
+##  Min.   :2013-10-21 00:00:00.00   Min.   : 0.010   
+##  1st Qu.:2018-11-21 00:00:00.00   1st Qu.: 0.180   
+##  Median :2019-06-27 00:00:00.00   Median : 0.550   
+##  Mean   :2019-01-11 17:33:01.04   Mean   : 1.044   
+##  3rd Qu.:2019-08-07 00:00:00.00   3rd Qu.: 1.370   
+##  Max.   :2019-08-27 00:00:00.00   Max.   :13.000   
+##  NA's   :2773                     NA's   :2773     
+##  calculated_host_listings_count availability_365
+##  Min.   :  1.00                 Min.   :  0.0   
+##  1st Qu.:  2.00                 1st Qu.: 54.0   
+##  Median :  9.00                 Median :260.0   
+##  Mean   : 40.55                 Mean   :208.7   
+##  3rd Qu.: 48.00                 3rd Qu.:355.0   
+##  Max.   :274.00                 Max.   :365.0   
+## 
+\end{verbatim}
+
+\hypertarget{data-cleaning}{%
+\section{Data cleaning}\label{data-cleaning}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Remover colunas desnecessárias}
+\NormalTok{data }\OtherTok{\textless{}{-}}\NormalTok{ data[, }\FunctionTok{c}\NormalTok{(}\StringTok{"neighbourhood\_group"}\NormalTok{, }\StringTok{"name"}\NormalTok{, }\StringTok{"host\_id"}\NormalTok{, }\StringTok{"host\_name"}\NormalTok{, }\StringTok{"neighbourhood"}\NormalTok{, }\StringTok{"latitude"}\NormalTok{, }\StringTok{"number\_of\_reviews"}\NormalTok{, }\StringTok{"longitude"}\NormalTok{, }\StringTok{"room\_type"}\NormalTok{, }\StringTok{"price"}\NormalTok{, }\StringTok{"availability\_365"}\NormalTok{)]}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{filter-only-complete-rows-no-null-values}{%
+\subsection{Filter only complete rows (no null
+values)}\label{filter-only-complete-rows-no-null-values}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data\_clean }\OtherTok{\textless{}{-}}\NormalTok{ data[}\FunctionTok{complete.cases}\NormalTok{(data), ]}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{identify-and-remove-duplicate-elements}{%
+\subsection{Identify and remove duplicate
+elements}\label{identify-and-remove-duplicate-elements}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data\_unique }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(data\_clean, }\SpecialCharTok{!}\FunctionTok{duplicated}\NormalTok{(data\_clean))}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{boxplot-to-understand-the-distribution-of-data-depending-on-the-price-column}{%
+\subsection{Boxplot to understand the distribution of data depending on
+the price
+column}\label{boxplot-to-understand-the-distribution-of-data-depending-on-the-price-column}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Seleciona as colunas desejadas para criar os boxplots}
+\FunctionTok{boxplot}\NormalTok{(data\_unique}\SpecialCharTok{$}\NormalTok{price, }\AttributeTok{col =} \StringTok{"green"}\NormalTok{, }\AttributeTok{ylim =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1000}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Session3-{[}Klysman-Vieira--in-R_files/figure-latex/unnamed-chunk-8-1.pdf}
+
+\hypertarget{remove-lines-outliers-where-price-500}{%
+\subsection{Remove lines (outliers) where price \textgreater=
+500}\label{remove-lines-outliers-where-price-500}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data\_filtered\_500 }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(data\_unique, price }\SpecialCharTok{\textless{}} \DecValTok{500}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{graphics}{%
+\section{Graphics}\label{graphics}}
+
+\hypertarget{create-a-boxplot-for-the-price-column}{%
+\subsection{Create a boxplot for the price
+column}\label{create-a-boxplot-for-the-price-column}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{boxplot\_output }\OtherTok{\textless{}{-}} \FunctionTok{boxplot}\NormalTok{(data\_filtered\_500}\SpecialCharTok{$}\NormalTok{price, }\AttributeTok{col =} \StringTok{"green"}\NormalTok{, }\AttributeTok{ylim =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{500}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Session3-{[}Klysman-Vieira--in-R_files/figure-latex/unnamed-chunk-10-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Acessa os resultados matemáticos do boxplot}
+\NormalTok{min\_value }\OtherTok{\textless{}{-}}\NormalTok{ boxplot\_output}\SpecialCharTok{$}\NormalTok{stats[}\DecValTok{1}\NormalTok{]}
+\NormalTok{q1 }\OtherTok{\textless{}{-}}\NormalTok{ boxplot\_output}\SpecialCharTok{$}\NormalTok{stats[}\DecValTok{2}\NormalTok{]}
+\NormalTok{median }\OtherTok{\textless{}{-}}\NormalTok{ boxplot\_output}\SpecialCharTok{$}\NormalTok{stats[}\DecValTok{3}\NormalTok{]}
+\NormalTok{q3 }\OtherTok{\textless{}{-}}\NormalTok{ boxplot\_output}\SpecialCharTok{$}\NormalTok{stats[}\DecValTok{4}\NormalTok{]}
+\NormalTok{max\_value }\OtherTok{\textless{}{-}}\NormalTok{ boxplot\_output}\SpecialCharTok{$}\NormalTok{stats[}\DecValTok{5}\NormalTok{]}
+
+\CommentTok{\# Imprime os resultados}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Valor mínimo:"}\NormalTok{, min\_value, }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Valor mínimo: 0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Primeiro quartil:"}\NormalTok{, q1, }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Primeiro quartil: 65
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Mediana:"}\NormalTok{, median, }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Mediana: 119
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Terceiro quartil:"}\NormalTok{, q3, }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Terceiro quartil: 187
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Valor máximo:"}\NormalTok{, max\_value, }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Valor máximo: 369
+\end{verbatim}
+
+\hypertarget{create-a-bar-chart-for-the-room_type-column}{%
+\subsection{Create a bar chart for the ``room\_type''
+column}\label{create-a-bar-chart-for-the-room_type-column}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{barplot}\NormalTok{(}\FunctionTok{table}\NormalTok{(data\_filtered\_500}\SpecialCharTok{$}\NormalTok{room\_type), }\AttributeTok{main =} \StringTok{"Gráfico de Barras {-} Room Type"}\NormalTok{, }\AttributeTok{xlab =} \StringTok{"Room Type"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"Frequência"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Session3-{[}Klysman-Vieira--in-R_files/figure-latex/unnamed-chunk-11-1.pdf}
+
+\hypertarget{creates-a-bar-chart-for-the-room_type-column.-shows-the-regions-of-greatest-interest-in-singapore}{%
+\subsection{Creates a bar chart for the ``room\_type'' column. Shows the
+regions of greatest interest in
+Singapore}\label{creates-a-bar-chart-for-the-room_type-column.-shows-the-regions-of-greatest-interest-in-singapore}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{barplot}\NormalTok{(}\FunctionTok{table}\NormalTok{(data\_filtered\_500}\SpecialCharTok{$}\NormalTok{neighbourhood\_group), }\AttributeTok{main =} \StringTok{"Gráfico de Barras {-} neighbourhood\_group"}\NormalTok{, }\AttributeTok{xlab =} \StringTok{"neighbourhood\_group"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"Frequência"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Session3-{[}Klysman-Vieira--in-R_files/figure-latex/unnamed-chunk-12-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Obtém o índice da linha com o maior valor em number\_of\_reviews}
+\NormalTok{index }\OtherTok{\textless{}{-}} \FunctionTok{which.max}\NormalTok{(data\_filtered\_500}\SpecialCharTok{$}\NormalTok{number\_of\_reviews)}
+
+\CommentTok{\# Obtém a linha completa com o maior valor em number\_of\_reviews}
+\NormalTok{row\_with\_max\_reviews }\OtherTok{\textless{}{-}}\NormalTok{ data\_filtered\_500[index, ]}
+
+\CommentTok{\# Imprime a linha completa}
+\FunctionTok{print}\NormalTok{(row\_with\_max\_reviews)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 11
+##   neighbourhood_group name              host_id host_name neighbourhood latitude
+##   <chr>               <chr>               <dbl> <chr>     <chr>            <dbl>
+## 1 East Region         Luxuriously Spac~ 7642747 Shirley   Bedok             1.32
+## # i 5 more variables: number_of_reviews <dbl>, longitude <dbl>,
+## #   room_type <chr>, price <dbl>, availability_365 <dbl>
+\end{verbatim}
+
+\hypertarget{ggplot2}{%
+\section{GGPLOT2}\label{ggplot2}}
+
+\hypertarget{bar-graphs}{%
+\subsubsection{Bar graphs}\label{bar-graphs}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+
+\CommentTok{\# Cria o gráfico de barras usando ggplot2}
+\FunctionTok{ggplot}\NormalTok{(data\_filtered\_500, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ room\_type)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{fill =} \StringTok{"blue"}\NormalTok{, }\AttributeTok{color =} \StringTok{"black"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =} \StringTok{"Tipo de Quarto"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Contagem"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Contagem de Quartos por Tipo"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Session3-{[}Klysman-Vieira--in-R_files/figure-latex/unnamed-chunk-14-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(data\_filtered\_500, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ neighbourhood\_group)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{fill =} \StringTok{"blue"}\NormalTok{, }\AttributeTok{color =} \StringTok{"black"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =} \StringTok{"Neighbourhood Group"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Count"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Count of Listings by Neighbourhood Group"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Session3-{[}Klysman-Vieira--in-R_files/figure-latex/unnamed-chunk-15-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(data\_filtered\_500, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ price, }\AttributeTok{y =}\NormalTok{ number\_of\_reviews)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =} \StringTok{"Price"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Number of Reviews"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Price vs. Number of Reviews"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Session3-{[}Klysman-Vieira--in-R_files/figure-latex/unnamed-chunk-16-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(data\_filtered\_500, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ neighbourhood\_group, }\AttributeTok{y =}\NormalTok{ price)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_boxplot}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =} \StringTok{"Neighbourhood Group"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Price"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Price Distribution by Neighbourhood Group"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Session3-{[}Klysman-Vieira--in-R_files/figure-latex/unnamed-chunk-17-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(data\_filtered\_500, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ price, }\AttributeTok{fill =}\NormalTok{ room\_type)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_density}\NormalTok{(}\AttributeTok{alpha =} \FloatTok{0.5}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =} \StringTok{"Price"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Density"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Price Distribution by Room Type"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Session3-{[}Klysman-Vieira--in-R_files/figure-latex/unnamed-chunk-18-1.pdf}
+
+\#salvando o novo dataframe data\_filtered\_500\_price em formato XLSX
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(openxlsx)}
+\NormalTok{new\_data }\OtherTok{\textless{}{-}} \StringTok{"G:/My Drive/IPS/Mestrado/UCs/Aprendizage supervisionada/IPS{-}ESCE SP ML/Session 3/Data/data\_filtered\_500\_price.xlsx"}
+\FunctionTok{write.xlsx}\NormalTok{(data\_filtered\_500, }\AttributeTok{file =}\NormalTok{ new\_data)}
+\end{Highlighting}
+\end{Shaded}
+
+
+\end{document}

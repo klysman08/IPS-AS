@@ -1,5 +1,0 @@
-"0","# Task 6: Store records of above countries in separate data frames and compare average ratings"
-"0","avgRatingPortugal <- mean(dfPortugal$Rating)"
-"0","avgRatingSpain <- mean(dfSpain$Rating)"
-"0","avgRatingGermany <- mean(dfGermany$Rating)"
-"0","avgRatingUSA <- mean(dfUSA$Rating)"

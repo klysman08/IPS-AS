@@ -1,0 +1,211 @@
+---
+title: "R Notebook"
+output:
+  html_notebook: default
+  pdf_document: default
+name: Klysman Vieira
+Id: 230353014
+---
+### Name: Klysman Vieira
+### Id: 230353014
+
+# EDA Singapore Accommodations
+
+# Introduction:
+
+During exploratory data analysis (EDA), the dataframe that has information about accommodation in Singapore was worked on. Some dataframe columns contain the following information:
+
+- `neighborhood_group`: Indicates the region of the neighborhood where the accommodation is located.
+- `name`: Name of the accommodation.
+- `host_id`: ID of the host responsible for the accommodation.
+- `host_name`: Host name.
+- `neighborhood`: Name of the neighborhood where the accommodation is located.
+- `latitude` and `longitude`: Geographic coordinates of the accommodation.
+- `number_of_reviews`: Number of reviews received by the accommodation.
+- `room_type`: Type of room available in the accommodation.
+- `price`: Price of the accommodation.
+- `availability_365`: Number of days the accommodation is available to book over the course of a year.
+
+During exploratory data analysis, we explore and summarize the main characteristics and patterns present in these data.
+
+1. Descriptive analysis: We perform a statistical description of the variables, such as mean, median, standard deviation, minimum and maximum. This helps us understand the distribution of data and identify potential discrepancies or outliers.
+
+2. Handling missing or inconsistent data: We identify and handle missing or inconsistent data, such as nulls or outliers. This may involve deleting records with missing data or filling in these values with appropriate techniques.
+
+3. Data visualization: We use graphs and visualizations to represent data in a more understandable way. For example, we can create bar charts to show the distribution of room types or a map to visualize the location of accommodations.
+
+ 
+
+# Insights
+- We look for interesting patterns and insights in the data that can be useful for decision-making or answering specific questions. For example, we may discover that certain neighborhoods have a greater availability of accommodation throughout the year or that certain room types have a direct relationship with price.
+
+- There are relationships between the variables present in the dataframe. For example, we can analyze whether the price of accommodation varies according to the region of the neighborhood or whether there is any correlation between the number of reviews and availability throughout the year.
+
+
+
+## Loading the raw dataframe
+
+```{r}
+
+library(readxl)
+
+file_path <- "G:/My Drive/IPS/Mestrado/UCs/Aprendizage supervisionada/IPS-ESCE SP ML/Session 3/Data/Singapore Airbnb - Raw.xlsx"
+
+data <- read_excel(file_path)
+
+num_rows <- dim(data)[1]
+num_cols <- dim(data)[2]
+
+column_names <- colnames(data)
+
+cat("Number of rows:", num_rows, "\n")
+cat("Number of columns:", num_cols, "\n")
+cat("Column names:", paste(column_names, collapse = ", "), "\n")
+
+```
+## Checking for missing data
+```{r}
+missing_values <- colSums(is.na(data))
+
+print("Number of missing values in each column:")
+print(missing_values)
+```
+## Display the first rows of data
+```{r}
+head(data)
+```
+
+
+## Statistical data about the dataframe
+```{r}
+summary(data)
+```
+
+
+# Data cleaning
+```{r}
+#Remover colunas desnecessárias
+data <- data[, c("neighbourhood_group", "name", "host_id", "host_name", "neighbourhood", "latitude", "number_of_reviews", "longitude", "room_type", "price", "availability_365")]
+```
+
+
+## Filter only complete rows (no null values)
+```{r}
+data_clean <- data[complete.cases(data), ]
+```
+
+## Identify and remove duplicate elements
+```{r}
+data_unique <- subset(data_clean, !duplicated(data_clean))
+```
+
+## Boxplot to understand the distribution of data depending on the price column
+```{r}
+# Seleciona as colunas desejadas para criar os boxplots
+boxplot(data_unique$price, col = "green", ylim = c(0, 1000))
+```
+
+## Remove lines (outliers) where price >= 500
+```{r}
+data_filtered_500 <- subset(data_unique, price < 500)
+```
+
+# Graphics
+
+## Create a boxplot for the price column
+```{r}
+boxplot_output <- boxplot(data_filtered_500$price, col = "green", ylim = c(0, 500))
+
+# Acessa os resultados matemáticos do boxplot
+min_value <- boxplot_output$stats[1]
+q1 <- boxplot_output$stats[2]
+median <- boxplot_output$stats[3]
+q3 <- boxplot_output$stats[4]
+max_value <- boxplot_output$stats[5]
+
+# Imprime os resultados
+cat("Valor mínimo:", min_value, "\n")
+cat("Primeiro quartil:", q1, "\n")
+cat("Mediana:", median, "\n")
+cat("Terceiro quartil:", q3, "\n")
+cat("Valor máximo:", max_value, "\n")
+```
+
+## Create a bar chart for the "room_type" column
+```{r}
+barplot(table(data_filtered_500$room_type), main = "Gráfico de Barras - Room Type", xlab = "Room Type", ylab = "Frequência")
+```
+
+## Creates a bar chart for the "room_type" column. Shows the regions of greatest interest in Singapore
+
+```{r}
+barplot(table(data_filtered_500$neighbourhood_group), main = "Gráfico de Barras - neighbourhood_group", xlab = "neighbourhood_group", ylab = "Frequência")
+
+```
+
+```{r}
+# Obtém o índice da linha com o maior valor em number_of_reviews
+index <- which.max(data_filtered_500$number_of_reviews)
+
+# Obtém a linha completa com o maior valor em number_of_reviews
+row_with_max_reviews <- data_filtered_500[index, ]
+
+# Imprime a linha completa
+print(row_with_max_reviews)
+
+```
+# GGPLOT2
+### Bar graphs
+
+```{r}
+library(ggplot2)
+
+# Cria o gráfico de barras usando ggplot2
+ggplot(data_filtered_500, aes(x = room_type)) +
+  geom_bar(fill = "blue", color = "black") +
+  labs(x = "Tipo de Quarto", y = "Contagem") +
+  ggtitle("Contagem de Quartos por Tipo")
+
+```
+
+```{r}
+ggplot(data_filtered_500, aes(x = neighbourhood_group)) +
+  geom_bar(fill = "blue", color = "black") +
+  labs(x = "Neighbourhood Group", y = "Count") +
+  ggtitle("Count of Listings by Neighbourhood Group")
+
+```
+
+```{r}
+ggplot(data_filtered_500, aes(x = price, y = number_of_reviews)) +
+  geom_point() +
+  labs(x = "Price", y = "Number of Reviews") +
+  ggtitle("Price vs. Number of Reviews")
+
+```
+```{r}
+ggplot(data_filtered_500, aes(x = neighbourhood_group, y = price)) +
+  geom_boxplot() +
+  labs(x = "Neighbourhood Group", y = "Price") +
+  ggtitle("Price Distribution by Neighbourhood Group")
+
+```
+
+```{r}
+ggplot(data_filtered_500, aes(x = price, fill = room_type)) +
+  geom_density(alpha = 0.5) +
+  labs(x = "Price", y = "Density") +
+  ggtitle("Price Distribution by Room Type")
+
+```
+
+#salvando o novo dataframe data_filtered_500_price em formato XLSX
+
+```{r}
+library(openxlsx)
+new_data <- "G:/My Drive/IPS/Mestrado/UCs/Aprendizage supervisionada/IPS-ESCE SP ML/Session 3/Data/data_filtered_500_price.xlsx"
+write.xlsx(data_filtered_500, file = new_data)
+
+```
+
+
